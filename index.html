@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CF Test Brian Duong</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.12/ouibounce.js"></script>
+  <!-- Added link to the jQuery Library -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
+  <style>
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+#cf {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20%;
+  font-size: 50px;
+}
+
+#ouibounce-modal {
+  font-family: 'Open Sans', sans-serif;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+#ouibounce-modal .underlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+  cursor: pointer;
+  -webkit-animation: fadein 0.5s;
+  animation: fadein 0.5s;
+}
+#ouibounce-modal .modal {
+  width: 600px;
+  height: 400px;
+  background-color: #f0f1f2;
+  z-index: 1;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 4px;
+  -webkit-animation: popin 0.3s;
+  animation: popin 0.3s;
+}
+#ouibounce-modal .modal-title {
+  font-size: 18px;
+  background-color: #FFF;
+  color: #000;
+  padding: 10px;
+  margin: 0;
+  border-radius: 4px 4px 0 0;
+  text-align: center;
+}
+#ouibounce-modal h3 {
+  color: #000;
+  font-size: 1em;
+  margin: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+#ouibounce-modal h1 {
+  color: #000;
+  font-size: 2em;
+  margin: 0.5em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+#ouibounce-modal .modal-body {
+  padding: 20px 35px;
+  font-size: 0.9em;
+  text-align: center;
+}
+#ouibounce-modal button {
+  background-color: #FF0000;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+#ouibounce-modal p {
+  color: #344a5f;
+  line-height: 1.3em;
+}
+#ouibounce-modal .modal-footer {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+#ouibounce-modal .modal-footer p {
+  text-transform: capitalize;
+  cursor: pointer;
+  display: inline;
+  border-bottom: 1px solid #344a5f;
+}
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+@-ms-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes popin {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  85% {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@-ms-keyframes popin {
+  0% {
+    -ms-transform: scale(0);
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  85% {
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes popin {
+  0% {
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  85% {
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <div id="cf">CF DEV TASK</div>
+
+  <div id="ouibounce-modal">
+    <div class="underlay"></div>
+    <div class="modal">
+      <div class="modal-title"><h3>WAIT! SPECIAL OFFER FOR <span id="city">city</span> Residents</h3></div>
+      <div class="modal-body">
+        <h1>Claim your instant discount before the timer runs out!</h1>
+      </div>
+      <div class="modal-footer"><button>Claim Discount</button></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+  $('.modal-body').append('<div class="clock" style="margin:2em;"></div>');
+
+  $.getJSON("http://ip-api.com/json/?status,city", function(data) {
+    if(data.status=="success"){
+      $('#city').text(data.city);
+    }
+  });
+
+  var clock;
+  clock = $('.clock').FlipClock({
+        clockFace: 'HourlyCounter',
+        autoStart: false,
+        callbacks: {
+          stop: function() {
+            $('.message').html('The clock has stopped!')
+          }
+        }
+    });
+
+    clock.setTime(3599);
+    clock.setCountdown(true);
+    clock.start();
+
+  var _ouibounce = ouibounce(document.getElementById('ouibounce-modal'), {
+      aggressive: true,
+      timer: 0,
+      callback: function() {
+         _ouibounce.disable();
+         console.log('ouibounce fired!');
+      }
+    });
+
+    $('body').on('click', function() {
+      $('#ouibounce-modal').hide();
+    });
+
+    $('#ouibounce-modal .modal-footer').on('click', function() {
+      $('#ouibounce-modal').hide();
+    });
+
+    $('#ouibounce-modal .modal').on('click', function(e) {
+      e.stopPropagation();
+    });
+</script>
+
+</body>
+</html>
